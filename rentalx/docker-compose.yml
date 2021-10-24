@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+    database_ignite:
+        image: postgres
+        container_name: database_ignite
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=ignite
+            - POSTGRES_DB=rentx        
+        volumes:
+            - pgdata:/data/postgres
+        network_mode: bridge
+    app:
+        build: 
+            context: .            
+        container_name: rentx
+        ports:
+            - 3001:3001
+        links:
+            - database_ignite
+        environment:
+            SEQ_DB: rentx
+            SEQ_USER: docker
+            SEQ_PW: ignite            
+            PORT: 3001
+            DATABASE_URL: postgres://docker:ignite@database_ignite:5432/rentx
+        volumes:
+            - .:/usr/src/app
+        network_mode: bridge
+    
+volumes:
+    pgdata:
+        driver: local

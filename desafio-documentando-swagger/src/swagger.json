@@ -1,0 +1,27 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Challenge Swagger Documentation",
+        "description": "This is a documentation",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Ramon",
+            "url": "ramon.gomes.com.br",
+            "email": "ramon@mail.com.br"
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a user",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        
+                    }
+                }
+            }
+        }
+    }
+}

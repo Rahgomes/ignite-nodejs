@@ -1,10 +1,8 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
-import { router } from "./routes";
+import { usersRoutes } from "./routes/users.routes";
 import swaggerFile from "./swagger.json";
-
-import "./database";
 
 const app = express();
 
@@ -12,8 +10,6 @@ app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-app.use(router);
+app.use("/users", usersRoutes);
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001");
-});
+export { app };
